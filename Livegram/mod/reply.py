@@ -2,7 +2,7 @@ from Livegram import bot
 from telethon import events
 from Livegram import Config
 
-SUDO_USERS = Config.SUDO_USERS
+SU = Config.SUDO_USERS
 
 def get_arg(event):
     msg = event.raw_text
@@ -21,8 +21,8 @@ def arg_split_with(event, char):
 
 @bot.on(events.NewMessage(pattern='/r'))
 async def _(event):
-    if not event.from_id in SUDO_USERS:
-        await message.reply("no sudo")
+    if not event.from_id in SU:
+        await event.reply(SU)
         return
     reply = await event.get_reply_message()
     x = 0
