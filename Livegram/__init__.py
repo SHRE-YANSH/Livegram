@@ -17,7 +17,7 @@ class Config(object):
     API_ID = int(os.environ.get("API_ID", None))
     API_HASH = os.environ.get("API_HASH", "")
     TOKEN = os.environ.get("TOKEN", "")
-    SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
+    SUDO_USERS = [919262859, 552861144, 585145887, 698297764, 1245831019]  
     CHAT_ID = os.environ.get("CHAT_ID", "")
 
 class Production(Config):
