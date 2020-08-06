@@ -22,7 +22,7 @@ def arg_split_with(event, char):
 @bot.on(events.NewMessage(pattern='/r'))
 async def _(event):
     if not event.from_id in SU:
-        await event.reply(SU)
+        
         return
     reply = await event.get_reply_message()
     x = 0
