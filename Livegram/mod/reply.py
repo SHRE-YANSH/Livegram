@@ -22,6 +22,7 @@ def arg_split_with(event, char):
 @bot.on(events.NewMessage(pattern='/r'))
 async def _(event):
     if not event.from_id in SUDO_USERS:
+        await message.reply("no sudo")
         return
     reply = await event.get_reply_message()
     x = 0
