@@ -12,13 +12,12 @@ logger = logging.getLogger(__name__)
 
 to_c = Config.CHAT_ID
 
-if os.path.isfile("blacklist.txt"):
-    f = open('blacklist.txt', 'r+')
-    BL_CHAT = f.read().splitlines()
-    f.close()
-
 def forward(update, context):
     user = update.message.from_user
+    if os.path.isfile("blacklist.txt"):
+        f = open('blacklist.txt', 'r+')
+        BL_CHAT = f.read().splitlines()
+        f.close()
     if user['id'] in BL_CHAT:
          update.effective_message.reply_text("You have been blocked")
          return
