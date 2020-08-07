@@ -28,6 +28,7 @@ async def _(event):
     x = 0
     if not reply:
         await event.reply("Reply to a user forwarded message.")
+        return
     args = arg_split_with(event, "*")
     if not args:
         await event.reply("Enter message to send.")
@@ -45,7 +46,7 @@ async def _(event):
         try:
             id = int(args[0])
         except ValueError:
-            await event.reply("Failed to extract user id. Use /r <user_id>,<msg>")
+            await event.reply("Failed to extract user id. Use /r <user_id>*<msg>")
             return
         msg = args[1]
         if not msg:
