@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 to_c = Config.CHAT_ID
 
-if os.path.isfile(blacklist.txt):
+if os.path.isfile("blacklist.txt"):
     f = open('blacklist.txt', 'r+')
     BL_CHAT = f.read().splitlines()
     f.close()
