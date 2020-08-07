@@ -18,6 +18,6 @@ def forward(update, context):
     context.bot.forward_message(chat_id=to_c,
                         from_chat_id=update.message.chat_id,
                         message_id=update.message.message_id)
-    context.bot.send_message(chat_id=to_c, text=f"{user['first_name']} id is `{user['id']}`", parse_mode=ParseMode.MarkDown)
+    context.bot.send_message(chat_id=to_c, text=f"{user['first_name']} id is `{user['id']}`", parse_mode=ParseMode.MarkDown_V2)
                         
 dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, forward))
