@@ -11,10 +11,12 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 to_c = Config.CHAT_ID
-if os.isfile(blacklist.txt):
+
+if os.path.isfile(blacklist.txt):
     f = open('blacklist.txt', 'r+')
     BL_CHAT = f.read().splitlines()
     f.close()
+
 def forward(update, context):
     user = update.message.from_user
     if user['id'] in BL_CHAT:
