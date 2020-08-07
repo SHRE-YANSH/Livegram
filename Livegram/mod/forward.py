@@ -14,18 +14,19 @@ to_c = Config.CHAT_ID
 
 def forward(update, context):
     user = update.message.from_user
-    if os.path.isfile("/app/blacklist.txt"):
-        f = open('/app/blacklist.txt', 'r+')
-        BL_CHAT = f.read().splitlines()
-        f.close()
-    if user['id'] in BL_CHAT:
-         update.effective_message.reply_text("You have been blocked")
-         return
+    message = update.message
     if not update.effective_message.chat.type == "private":
     	return
-    context.bot.forward_message(chat_id=to_c,
+    if message.document:
+       document = message.document
+       file = document.file_id
+       context.bot.send_document(to_c, document=file)
+       msg = "Forwarded from [{}](tg://user?id={})(`{}`)".format(user['first_name'], user['id'], user['id'])
+       context.bot.send_message(chat_id=to_c, text=msg, parse_mode=ParseMode.MARKDOWN_V2)
+    else:
+       context.bot.forward_message(chat_id=to_c,
                         from_chat_id=update.message.chat_id,
                         message_id=update.message.message_id)
-    context.bot.send_message(chat_id=to_c, text=f"{user['first_name']} id is `{user['id']}`", parse_mode=ParseMode.MARKDOWN_V2)
-                        
-dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, forward))
+       context.bot.send_message(chat_id=to_c, text=f"{user['first_name']} id is `{user['id']}`", parse_mode=ParseMode.MARKDOWN_V2)
+                       
+dispatcher.add_handler(MessageHandler(Filters.all & ~Filters.command, forward))
