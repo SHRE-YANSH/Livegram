@@ -17,16 +17,9 @@ def forward(update, context):
     message = update.message
     if not update.effective_message.chat.type == "private":
     	return
-    if message.document:
-       document = message.document
-       file = document.file_id
-       context.bot.send_document(to_c, document=file)
-       msg = "Forwarded from [{}](tg://user?id={})(`{}`)".format(user['first_name'], user['id'], user['id'])
-       context.bot.send_message(chat_id=to_c, text=msg, parse_mode=ParseMode.MARKDOWN_V2)
-    else:
-       context.bot.forward_message(chat_id=to_c,
+    context.bot.forward_message(chat_id=to_c,
                         from_chat_id=update.message.chat_id,
                         message_id=update.message.message_id)
-       context.bot.send_message(chat_id=to_c, text=f"{user['first_name']} id is `{user['id']}`", parse_mode=ParseMode.MARKDOWN_V2)
+    context.bot.send_message(chat_id=to_c, text=f"{user['first_name']} id is `{user['id']}`", parse_mode=ParseMode.MARKDOWN_V2)
                        
 dispatcher.add_handler(MessageHandler(Filters.all & ~Filters.command, forward))
