@@ -25,6 +25,8 @@ async def _(event):
         
         return
     reply = await event.get_reply_message()
+    if not reply:
+         await message.reply("Reply to a forwarded message.")
     x = 0
     args = arg_split_with(event, "*")
     if not args:
