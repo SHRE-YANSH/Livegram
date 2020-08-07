@@ -28,7 +28,7 @@ async def _(event):
     x = 0
     if not reply:
         await event.reply("Reply to a user forwarded message.")
-    args = arg_split_with(event, ",")
+    args = arg_split_with(event, "*")
     if not args:
         await event.reply("Enter message to send.")
         return
