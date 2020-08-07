@@ -14,8 +14,8 @@ to_c = Config.CHAT_ID
 
 def forward(update, context):
     user = update.message.from_user
-    if os.path.isfile("blacklist.txt"):
-        f = open('blacklist.txt', 'r+')
+    if os.path.isfile("/app/blacklist.txt"):
+        f = open('/app/blacklist.txt', 'r+')
         BL_CHAT = f.read().splitlines()
         f.close()
     if user['id'] in BL_CHAT:
