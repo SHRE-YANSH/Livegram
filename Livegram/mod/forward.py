@@ -10,9 +10,15 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 to_c = Config.CHAT_ID
-
+if os.isfile(blacklist.txt):
+    f = open('blacklist.txt', 'r+')
+    BL_CHAT = f.read().splitlines()
+    f.close()
 def forward(update, context):
     user = update.message.from_user
+    if user['id'] in BL_CHAT:
+         update.effective_message.reply_text("You have been blocked")
+         return
     if not update.effective_message.chat.type == "private":
     	return
     context.bot.forward_message(chat_id=to_c,
