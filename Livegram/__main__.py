@@ -55,7 +55,10 @@ for module_name in ALL_MODULES:
 @run_async
 def start(update, context):
 	user = update.message.from_user
-	text = "Hey [{}](tg://user?id={}).".format(user['first_name'], user['id'])
+	if update.effective_message.chat.type == "private":
+	    text = "Official Bot for @BruteForcers Send it feedbacks or any config requests here to be done.ԅ( ͒ ۝ ͒ )ᕤ."
+	else:
+            text = "What bsdk?"
 	update.effective_message.reply_text(text, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 def main():
