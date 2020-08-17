@@ -12,6 +12,8 @@ logger = logging.getLogger(__name__)
 
 to_c = Config.CHAT_ID
 
+dic = {}
+
 def forward(update, context):
     user = update.message.from_user
     message = update.message
@@ -21,5 +23,5 @@ def forward(update, context):
                         from_chat_id=update.message.chat_id,
                         message_id=update.message.message_id)
     context.bot.send_message(chat_id=to_c, text=f"{user['first_name']} id is `{user['id']}`", parse_mode=ParseMode.MARKDOWN_V2)
-                       
+    dic[f"{user['first_name']}] = int(user.id)              
 dispatcher.add_handler(MessageHandler(Filters.all & ~Filters.command, forward))
