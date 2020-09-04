@@ -2,6 +2,9 @@ from telethon import events
 from Livegram.mod.sql.blacklist_sql import add_user_to_bl, rem_user_from_bl
 import shlex
 from Livegram import bot
+from Livegram import Config
+
+SU = Config.SUDO_USERS
 
 def get_args(message):
     """Get arguments from message (str or Message), return list of arguments"""
@@ -23,6 +26,8 @@ def get_args(message):
 
 @bot.on(events.NewMessage(pattern='/b'))
 async def _(event):
+    if not event.from_id in SU:
+        return
     args = get_args(event)
     r = False
     user_id = args[0]
@@ -32,10 +37,12 @@ async def _(event):
     reason = "You are banned."
       
     add_user_to_bl(user_id, reason)
-    
+    await event.reply("Banned")
   
 @bot.on(events.NewMessage(pattern='/ub'))
 async def _(event):
+    if not event.from_id in SU:
+        return
     args = get_args(event)
     r = False
     user_id = args[0]
@@ -44,4 +51,4 @@ async def _(event):
        return
   
     rem_user_from_bl(user_id)
-   
+    await event.reply("Unbanned")
