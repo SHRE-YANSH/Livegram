@@ -1,5 +1,5 @@
 from telethon import events
-from Livegram.mod.sql.blacklist_sql import (add_user_to_bl, rem_user_from_bl)
+from Livegram.mod.sql.blacklist_sql import add_user_to_bl, rem_user_from_bl
 import shlex
 from Livegram import bot
 
