@@ -21,29 +21,26 @@ def get_args(message):
         return message  # Cannot split, let's assume that it's just one long message
     return list(filter(lambda x: len(x) > 0, split))
 
-@bot.on(events.NewMessage(pattern='/ban'))
+@bot.on(events.NewMessage(pattern='/b'))
 async def _(event):
     args = get_args(event)
     r = False
     user_id = args[0]
     if not user_id:
-       await message.reply("/ban user_id reason")
+       await message.reply("/ban user_id")
        return
-    try:
-      reason = " ".join(args[1:])
-    except:
-      reason = "You are banned."
+    reason = "You are banned."
       
     add_user_to_bl(user_id, reason)
     
   
-@bot.on(events.NewMessage(pattern='/unban'))
+@bot.on(events.NewMessage(pattern='/ub'))
 async def _(event):
     args = get_args(event)
     r = False
     user_id = args[0]
     if not user_id:
-       await message.reply("/unban user_id")
+       await message.reply("/ub user_id")
        return
   
     rem_user_from_bl(user_id)
