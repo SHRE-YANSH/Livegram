@@ -26,7 +26,7 @@ class BlackList(BASE):
 BlackList.__table__.create(checkfirst=True)
 
 
-def add_user_to_bl(chat_id, reason="You have been banned"):
+def add_user_to_bl(chat_id, reason):
     """ add the user to the blacklist """
     __user = BlackList(str(chat_id), reason)
     SESSION.add(__user)
