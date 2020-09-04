@@ -19,7 +19,7 @@ class Config(object):
     TOKEN = os.environ.get("TOKEN", "")
     SUDO_USERS = SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
     CHAT_ID = os.environ.get("CHAT_ID", "")
-
+    DB_URI = os.environ.get("DATABASE_URL", None)
 class Production(Config):
     LOGGER = False
 
