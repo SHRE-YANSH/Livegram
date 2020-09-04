@@ -3,10 +3,7 @@ from sqlalchemy import (
     String,
     UnicodeText
 )
-from Livegram/mod/sql import (
-    SESSION,
-    BASE
-)
+from Livegram/mod/sql import SESSION, BASE
 
 
 class BlackList(BASE):
