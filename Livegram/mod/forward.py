@@ -18,7 +18,7 @@ def forward(update, context):
     user = update.message.from_user
     check_ban = check_is_black_list(user['id'])
     if check_ban:
-       context.bot.send_message(chat_id=user['id'], text=check_ban.reason)
+       context.bot.send_message(chat_id=user['id'], text="You have been banned.")
        return
     message = update.message
     if not update.effective_message.chat.type == "private":
