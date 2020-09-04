@@ -3,7 +3,7 @@ from sqlalchemy import (
     String,
     UnicodeText
 )
-from . import (
+from Livegram/mod/sql import (
     SESSION,
     BASE
 )
